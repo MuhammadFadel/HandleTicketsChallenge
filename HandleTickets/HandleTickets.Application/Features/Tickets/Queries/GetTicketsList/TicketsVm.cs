@@ -14,5 +14,6 @@ namespace HandleTickets.Application.Features.Tickets.Queries.GetTicketsList
         public string City { get; set; }
         public string District { get; set; }
         public string CreatedDate { get; set; }
+        public bool Status { get; set; }
     }
 }

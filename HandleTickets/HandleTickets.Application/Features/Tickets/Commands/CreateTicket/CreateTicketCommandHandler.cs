@@ -26,12 +26,12 @@ namespace HandleTickets.Application.Features.Tickets.Commands.CreateTicket
 
         public async Task<int> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
         {
-            var orderEntity = _mapper.Map<Ticket>(request);
-            var newOrder = await _ticketRepository.AddAsync(orderEntity);
+            var ticketEntity = _mapper.Map<Ticket>(request);
+            var newTicket = await _ticketRepository.AddAsync(ticketEntity);
 
-            _logger.LogInformation($"Order {newOrder.Id} is successfully created.");
+            _logger.LogInformation($"Ticket {newTicket.Id} is successfully created.");
 
-            return newOrder.Id;
+            return newTicket.Id;
         }        
     }
 }
