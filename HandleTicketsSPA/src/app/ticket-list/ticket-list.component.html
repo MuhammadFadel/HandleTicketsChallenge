@@ -1,0 +1,28 @@
+<div class="row p-5">
+  <div class="col-sm-4 mb-3" *ngFor="let ticket of tickets">
+    <div class="card" [ngClass]="defineColor(ticket)">
+      <div class="card-body">
+        <h5 class="card-title">{{ticket.phoneNumber}}</h5>
+        <p class="card-text">Government: {{ticket.governorate}}</p>
+        <p class="card-text">City: {{ticket.city}}</p>
+        <p class="card-text">District: {{ticket.district}}</p>
+        <p class="card-text">Creation: {{ticket.createdDate | date:'medium'}}</p>
+        <p class="card-text">Status: {{ticket.status == true ? "Handled" : "Not Handled"}}</p>
+        <a (click)="handleTicket(ticket)" class="btn btn-primary" *ngIf="!ticket.status">
+          Handle
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [(ngModel)]="pagination.currentPage"
+    [itemsPerPage]="pagination.itemsPerPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"lastText="&raquo;">
+  </pagination>
+</div>

@@ -17,7 +17,7 @@ namespace HandleTickets.Application.Mappings
         {
             CreateMap(typeof(PagedList<>), typeof(PagedList<>));
             CreateMap<Ticket, TicketsVm>()
-                .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate.ToString("dd/MM/yyyy hh:mm tt")))
+                //.ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate.ToString("dd/MM/yyyy hh:mm tt")))
                 .ReverseMap();
             CreateMap<Ticket, CreateTicketCommand>().ReverseMap();            
         }

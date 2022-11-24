@@ -1,3 +1,4 @@
+using HandleTickets.API.Middleware;
 using HandleTickets.Application;
 using HandleTickets.Infrastructure;
 
@@ -8,6 +9,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,8 +23,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()              
+                .AllowAnyOrigin());
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
