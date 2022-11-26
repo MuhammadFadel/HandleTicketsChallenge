@@ -19,7 +19,7 @@ namespace HandleTickets.Infrastructure.Repositories
 
         public async Task<PagedList<Ticket>> GetTickets(PaginationParams paginationParams)
         {
-            var ticketList = _dbContext.Tickets;                                
+            var ticketList = _dbContext.Tickets.OrderByDescending(c => c.CreatedDate);                                
             return await PagedList<Ticket>.CreateAsync(ticketList, paginationParams.PageNumber, paginationParams.PageSize) ;
         }
     }
