@@ -1,3 +1,4 @@
+import { TicketToCreate } from './../_models/ticketToCreate';
 import { ChangeTicketStatus } from './../_models/changeTicketStatus';
 import { Ticket } from './../_models/ticket';
 import { map, Observable } from 'rxjs';
@@ -38,5 +39,9 @@ export class TicketService {
 
   changeStatus(status: ChangeTicketStatus): Observable<boolean> {
     return this.http.put<boolean>(this.baseUrl, status);
+  }
+
+  createTicket(ticket: TicketToCreate): Observable<number> {
+    return this.http.post<number>(this.baseUrl, ticket);
   }
 }

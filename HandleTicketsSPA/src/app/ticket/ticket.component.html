@@ -1,0 +1,53 @@
+<div class="container">
+  <form class="row p-5" [formGroup]="createForm" (ngSubmit)="submitTicket()">
+    <div class="form-group m-2">
+      <label for="phoneNumberInput">Phone Name</label>
+      <input type="text" [ngClass]="{'is-invalid': createForm.get('phoneNumber')?.errors
+                    && createForm.get('phoneNumber')?.touched }" class="form-control" formControlName="phoneNumber"
+        id="phoneNumberInput" placeholder="Phone Number">
+
+      <div class="invalid-feedback" *ngIf="createForm.get('phoneNumber')?.hasError('required')
+        && createForm.get('phoneNumber')?.touched">
+        Phone Number is required.
+      </div>
+    </div>
+    <div class="form-group m-2">
+      <label for="governmentInput">Government</label>
+      <select id="governmentInput" (change)="filterCities($event.target)"
+      [ngClass]="{'is-invalid': createForm.get('governorate')?.errors
+                  && createForm.get('governorate')?.touched }" class="form-control" formControlName="governorate">
+        <option selected value="">Choose Government...</option>
+        <option *ngFor="let gov of governorates" [value]="gov.name">{{gov.name}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="createForm.get('governorate')?.hasError('required')
+        && createForm.get('governorate')?.touched">
+        Government is required.
+      </div>
+    </div>
+    <div class="form-group m-2">
+      <label for="cityInput">City</label>
+      <select id="cityInput" (change)="filterDistricts($event.target)" [ngClass]="{'is-invalid': createForm.get('city')?.errors
+                    && createForm.get('city')?.touched }" class="form-control" formControlName="city">
+        <option selected value="">Choose City...</option>
+        <option *ngFor="let city of selectionCities" value={{city.name}}> {{city.name}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="createForm.get('city')?.hasError('required')
+        && createForm.get('city')?.touched">
+        City is required.
+      </div>
+    </div>
+    <div class="form-group m-2">
+      <label for="districtInput">District</label>
+      <select id="districtInput" [ngClass]="{'is-invalid': createForm.get('district')?.errors
+                    && createForm.get('district')?.touched }" class="form-control" formControlName="district">
+        <option selected value="">Choose District...</option>
+        <option *ngFor="let dis of selectionDistricts" value={{dis.name}}>{{dis.name}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="createForm.get('district')?.hasError('required')
+        && createForm.get('district')?.touched">
+        District is required.
+      </div>
+    </div>
+    <button type="submit" [disabled]="!createForm.valid" class="btn btn-primary my-2 w-75 mx-auto">Create</button>
+  </form>
+</div>

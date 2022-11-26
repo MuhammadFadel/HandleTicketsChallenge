@@ -12,7 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TicketService } from './_services/ticket.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     PaginationModule.forRoot(),
     ToastrModule.forRoot(),
